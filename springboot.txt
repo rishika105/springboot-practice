@@ -1,0 +1,29 @@
+Springboot
+------------
+
+Maven - dependency management and build tool
+
+Dependencies
+Spring web - can create web server. uses apache tomcat as the default embedded container.
+
+Beans - java objects maintained by the spring container
+
+Annotations - tells spring/Ioc (inversion of control) container what to do. 
+ex:
+@Component
+Spring framework/ IOC scans this and make a bean and store it.
+@SpringbootApplication - entry point / only once in one appl.
+
+
+Internal working of springboot
+------------------------------
+when you click run -> IOC container runs it tries to create application context -> this context has bunch of beans(it supplies it when needed) + add some external configurations you have provided like (environment variables or properties files)
+
+- uses component scanning to create beans (@component create automatic bean ..@service, @controller comes under it) 
+- we can also create bean by using @bean annotation
+- it recursively scans all files comes under that package
+
+
+-what makes spring framework a springboot appl.
+@EnableAutoConfiguration -> auto download files and do all config
+@SpringbootApplication -> ctrl + click to see details
