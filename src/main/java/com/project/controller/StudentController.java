@@ -3,6 +3,8 @@ package com.project.controller;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,12 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.dto.StudentDTO;
 import com.project.dto.StudentRequest;
-import com.project.entity.Student;
 import com.project.repository.StudentRepository;
 import com.project.service.StudentService;
 
@@ -76,9 +76,28 @@ public class StudentController {
 
 	@GetMapping("/testingJpa")
 	// just call jpa method here and return entity only for testing
-	public ResponseEntity<List<Student>> testJpaMethods(@RequestParam String name, @RequestParam Integer age) {
-		return ResponseEntity.ok(repo.findByNameAndAgeGreaterThan(name, age));
+//	public ResponseEntity<List<Student>> testJpaMethods(@RequestParam String name, @RequestParam Integer age) {
+//		return ResponseEntity.ok(repo.findByNameAndAgeGreaterThan(name, age));
+//
+//	}
+
+//	public ResponseEntity<List<Student>> testJpaMethods(@RequestParam BloodGroupType bloodGroup) {
+//		return ResponseEntity.ok(repo.findByBloodGroup(bloodGroup));
+//
+//	}
+
+	public ResponseEntity<?> testJpaMethods() {
+		// return ResponseEntity.ok(repo.countEachBloodGroupType());
+//		return ResponseEntity.ok(repo.findAllStudents());
+		// gets 2 adata at a time
+		// here we get only 0th page data as we have metntioned explicity
+		// means first 2 data in this case
+		return ResponseEntity.ok(repo.findAllStudents(PageRequest.of(0, 2, Sort.by("name"))));
 
 	}
+
+//	public ResponseEntity<?> testJpaMethods(@RequestParam Long id, @RequestParam String name) {
+//		return ResponseEntity.ok(repo.updateNameWithId(name, id));
+//	}
 
 }
