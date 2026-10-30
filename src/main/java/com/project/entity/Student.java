@@ -29,6 +29,7 @@ public class Student {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
+	private Integer age;
 
 	// db will be like this
 	@Column(unique = true, nullable = false)
@@ -42,6 +43,6 @@ public class Student {
 	// the blood group must come under the enum types only
 	// it is checked in db otherwise throw an error
 	@Enumerated(EnumType.STRING)
-	private BloodGroupType BloodGroup;
+	private BloodGroupType bloodGroup;
 
 }

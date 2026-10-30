@@ -1,5 +1,7 @@
 package com.project.dto;
 
+import com.project.entity.BloodGroupType;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,5 +12,8 @@ import lombok.NoArgsConstructor;
 public class StudentDTO {
 	private Long id;
 	private String name;
+	private Integer age;
 	private String email;
+	private BloodGroupType bloodGroup;
+
 }

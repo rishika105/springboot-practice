@@ -13,10 +13,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.dto.StudentDTO;
 import com.project.dto.StudentRequest;
+import com.project.entity.Student;
+import com.project.repository.StudentRepository;
 import com.project.service.StudentService;
 
 import jakarta.validation.Valid;
@@ -29,6 +32,7 @@ import lombok.RequiredArgsConstructor;
 public class StudentController {
 
 	private final StudentService service;
+	private final StudentRepository repo;
 
 	@GetMapping
 	public ResponseEntity<List<StudentDTO>> getStudents() {
@@ -67,6 +71,13 @@ public class StudentController {
 	public ResponseEntity<StudentDTO> updatePartialStudent(@PathVariable Long pid,
 			@RequestBody Map<String, Object> updates) {
 		return ResponseEntity.ok(service.updatePartialStudent(pid, updates));
+
+	}
+
+	@GetMapping("/testingJpa")
+	// just call jpa method here and return entity only for testing
+	public ResponseEntity<List<Student>> testJpaMethods(@RequestParam String name, @RequestParam Integer age) {
+		return ResponseEntity.ok(repo.findByNameAndAgeGreaterThan(name, age));
 
 	}
 

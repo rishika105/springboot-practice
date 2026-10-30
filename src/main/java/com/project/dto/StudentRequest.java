@@ -1,7 +1,10 @@
 package com.project.dto;
 
+import com.project.entity.BloodGroupType;
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
@@ -18,4 +21,9 @@ public class StudentRequest {
 	@Email
 	@NotBlank(message = "email is required")
 	private String email;
+
+	private BloodGroupType bloodGroup;
+
+	@NotNull
+	private Integer age;
 }
