@@ -19,6 +19,7 @@ import com.project.dto.StudentDTO;
 import com.project.dto.StudentRequest;
 import com.project.service.StudentService;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 //goes in component scaning and all maping are registered
@@ -44,7 +45,7 @@ public class StudentController {
 	}
 
 	@PostMapping
-	public ResponseEntity<StudentDTO> saveStudent(@RequestBody StudentRequest student) {
+	public ResponseEntity<StudentDTO> saveStudent(@Valid @RequestBody StudentRequest student) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(service.save(student));
 	}
 
@@ -57,7 +58,8 @@ public class StudentController {
 	// change the whole student entity
 	// while in patch do partial change
 	@PutMapping("/{pid}")
-	public ResponseEntity<StudentDTO> updateStudent(@PathVariable Long pid, @RequestBody StudentRequest student) {
+	public ResponseEntity<StudentDTO> updateStudent(@PathVariable Long pid,
+			@Valid @RequestBody StudentRequest student) {
 		return ResponseEntity.ok(service.updateStudent(pid, student));
 	}
 
